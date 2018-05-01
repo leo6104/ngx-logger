@@ -1,7 +1,7 @@
 import {Injectable, Injector} from '@angular/core';
 import {NgxLoggerLevel} from './types/logger-level.enum';
 import {LoggerConfig} from './logger.config';
-import {NGX_LOGGER_TOKEN} from './logger.interface';
+import {NGX_LOGGER_LISTENER} from './logger.interface';
 import {NGXLoggerConfigEngine} from './config.engine';
 
 
@@ -52,7 +52,7 @@ export class NGXLogger {
       return;
     }
 
-    this.injector.get(NGX_LOGGER_TOKEN, [])
+    this.injector.get(NGX_LOGGER_LISTENER, [])
       .forEach(logger => logger.log(level, message, additional));
   }
 }

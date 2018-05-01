@@ -6,7 +6,7 @@ import {NGXLogger} from './logger.service';
 import {LoggerConfig} from './logger.config';
 import {CustomNGXLoggerService} from './custom-logger.service';
 import {NGXLoggerHttpService} from './http.service';
-import {NGX_LOGGER_TOKEN} from './logger.interface';
+import {NGX_LOGGER_LISTENER} from './logger.interface';
 import {NGXConsoleLoggerService} from './console-logger.service';
 
 export * from './logger.service';
@@ -38,7 +38,7 @@ export class LoggerModule {
       ngModule: LoggerModule,
       providers: [
         {provide: LoggerConfig, useValue: config || {}},
-        [{provide: NGX_LOGGER_TOKEN, useClass: NGXConsoleLoggerService, multi: true}],
+        [{provide: NGX_LOGGER_LISTENER, useClass: NGXConsoleLoggerService, multi: true}],
         NGXLogger,
         NGXLoggerHttpService,
         CustomNGXLoggerService
