@@ -24,6 +24,6 @@ export class NGXLoggerHttpService {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     };
 
-    return this.http.post(url, body, options)
+    return this.http.post(url, body, options);
   }
 }
