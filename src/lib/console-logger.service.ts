@@ -39,7 +39,7 @@ export class NGXConsoleLoggerService implements NGXLoggerInterface {
   }
 
   log(level: NgxLoggerLevel, message, additional: any[] = []): void {
-    this._log(level, message);
+    this._log(level, message, additional);
   }
 
   private _log(level: NgxLoggerLevel, message, additional: any[] = [], logOnServer: boolean = true): void {
