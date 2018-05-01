@@ -1,13 +1,12 @@
 import {NGXLoggerInterface} from './logger.interface';
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
-import {NGXLoggerConfigEngine} from './config.engine';
-import {LoggerConfig} from './logger.config';
 import {isPlatformBrowser} from '@angular/common';
 import {NgxLoggerLevel} from './types/logger-level.enum';
 import {NGXLoggerUtils} from './utils/logger.utils';
 import {HttpMetaDataInterface} from './types/http-meta-data.interface';
 import {HttpErrorResponse} from '@angular/common/http';
 import {NGXLoggerHttpService} from './http.service';
+import {NGXLogger} from './logger.service';
 
 export const Levels = [
   'TRACE',
@@ -22,20 +21,12 @@ export const Levels = [
 @Injectable()
 export class NGXConsoleLoggerService implements NGXLoggerInterface {
   private _isIE: boolean;
-  private configService: NGXLoggerConfigEngine;
 
   constructor(private readonly httpService: NGXLoggerHttpService,
-              loggerConfig: LoggerConfig,
+              private ngxLogger: NGXLogger,
               @Inject(PLATFORM_ID) private readonly platformId) {
     this._isIE = isPlatformBrowser(platformId) &&
       !!(navigator.userAgent.indexOf('MSIE') !== -1 || navigator.userAgent.match(/Trident\//) || navigator.userAgent.match(/Edge\//));
-
-    // each instance of the logger should have their own config engine
-    this.configService = new NGXLoggerConfigEngine(loggerConfig);
-  }
-
-  public updateConfig(config: LoggerConfig) {
-    this.configService.updateConfig(config);
   }
 
   log(level: NgxLoggerLevel, message, additional: any[] = []): void {
@@ -55,7 +46,7 @@ export class NGXConsoleLoggerService implements NGXLoggerInterface {
     const validatedAdditionalParameters = NGXLoggerUtils.prepareAdditionalParameters(additional);
 
     const timestamp = new Date().toISOString();
-    const config = this.configService.getConfig();
+    const config = this.ngxLogger.getConfig();
 
     const callerDetails = NGXLoggerUtils.getCallerDetails();
 
