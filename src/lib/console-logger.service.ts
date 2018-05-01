@@ -1,4 +1,4 @@
-import {NGXLoggerInterface} from './logger.interface';
+import {NGXLoggerListenerInterface} from './logger.interface';
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {isPlatformBrowser} from '@angular/common';
 import {NgxLoggerLevel} from './types/logger-level.enum';
@@ -19,7 +19,7 @@ export const Levels = [
 ];
 
 @Injectable()
-export class NGXConsoleLoggerService implements NGXLoggerInterface {
+export class NGXConsoleLoggerService implements NGXLoggerListenerInterface {
   private _isIE: boolean;
 
   constructor(private readonly httpService: NGXLoggerHttpService,
