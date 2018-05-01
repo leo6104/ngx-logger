@@ -47,7 +47,7 @@ export class NGXLogger {
     return this.configService.getConfig();
   }
 
-  private _log(level: NgxLoggerLevel, message, additional: any[] = [], logOnServer: boolean = true): void {
+  private _log(level: NgxLoggerLevel, message, additional: any[] = []): void {
     if (!message) {
       return;
     }
