@@ -30,9 +30,6 @@ export class NGXConsoleLoggerService implements NGXLoggerListenerInterface {
   }
 
   private _log(level: NgxLoggerLevel, message, additional: any[] = []): void {
-    if (!message) {
-      return;
-    }
     const config = this.ngxLogger.getConfig();
 
     // if no message or the log level is less than the environ
@@ -41,12 +38,9 @@ export class NGXConsoleLoggerService implements NGXLoggerListenerInterface {
     }
 
     const logLevelString = Levels[level];
-
     const timestamp = new Date().toISOString();
     const callerDetails = NGXLoggerUtils.getCallerDetails();
-
     const metaString = NGXLoggerUtils.prepareMetaString(timestamp, logLevelString, callerDetails.fileName, callerDetails.lineNumber);
-
     message = NGXLoggerUtils.prepareMessage(message);
 
     // Coloring doesn't work in IE
