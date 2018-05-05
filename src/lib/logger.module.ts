@@ -14,7 +14,6 @@ export * from './logger.service';
 export * from './logger.config';
 
 export * from './custom-logger.service';
--;
 export * from './logonserver-logger.service';
 
 export * from './utils/logger.utils';

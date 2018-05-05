@@ -25,9 +25,9 @@ export class NGXLoggerHttpService implements NGXLoggerListenerInterface {
     // only use validated parameters for HTTP requests
     const validatedAdditionalParameters = NGXLoggerUtils.prepareAdditionalParameters(additional);
     const timestamp = new Date().toISOString();
+    const callerDetails = NGXLoggerUtils.getCallerDetails();
     const metaData: HttpMetaDataInterface = {
-      level: level,
-      timestamp: timestamp,
+      level, timestamp,
       fileName: callerDetails.fileName,
       lineNumber: callerDetails.lineNumber,
     };
