@@ -26,10 +26,6 @@ export class NGXConsoleLoggerService implements NGXLoggerListenerInterface {
   }
 
   log(level: NgxLoggerLevel, message, additional: any[] = []): void {
-    this._log(level, message, additional);
-  }
-
-  private _log(level: NgxLoggerLevel, message, additional: any[] = []): void {
     const config = this.ngxLogger.getConfig();
 
     // if no message or the log level is less than the environ
