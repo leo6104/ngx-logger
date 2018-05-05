@@ -2,7 +2,7 @@
 
 import {inject, TestBed} from '@angular/core/testing';
 import {NGXLogger} from './logger.service';
-import {NGXLoggerHttpService} from './http.service';
+import {NGXLoggerHttpService} from './logonserver-logger.service';
 import {NGXLoggerHttpServiceMock} from './testing/http.service.mock';
 import {LoggerConfig} from './logger.config';
 
