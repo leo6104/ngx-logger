@@ -15,7 +15,7 @@ export * from './logger.config';
 
 export * from './custom-logger.service';
 export * from './logonserver-logger.service';
-
+export * from './logger.interface';
 export * from './utils/logger.utils';
 export * from './types/logger-level.enum';
 export * from './types/http-meta-data.interface';
